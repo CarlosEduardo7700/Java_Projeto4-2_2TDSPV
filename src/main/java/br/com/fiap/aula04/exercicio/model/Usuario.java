@@ -27,6 +27,11 @@ public class Usuario implements UserDetails {
     @Column(name = "ds_senha", nullable = false)
     private String senha;
 
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
