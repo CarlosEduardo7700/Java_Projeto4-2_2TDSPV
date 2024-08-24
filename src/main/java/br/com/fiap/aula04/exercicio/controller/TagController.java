@@ -16,6 +16,7 @@ import br.com.fiap.aula04.exercicio.model.Tag;
 
 @RestController
 @RequestMapping("tags")
+@io.swagger.v3.oas.annotations.tags.Tag(name = "Tag", description = "Operações relacionadas as Tags dos posts")
 public class TagController {
 
     @Autowired

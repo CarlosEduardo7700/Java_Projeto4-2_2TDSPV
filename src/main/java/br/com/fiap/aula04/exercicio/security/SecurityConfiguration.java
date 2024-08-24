@@ -22,6 +22,8 @@ public class SecurityConfiguration {
     @Autowired
     private SecurityFilter securityFilter;
 
+    private static final String[] SWAGGER_WHITELIS = { "/swagger-ui/**", "/v3/api-docs/**"};
+
     // private final String[] rotas = new String[]{"/posts", "/login"};
 
     @Bean
@@ -31,7 +33,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers(HttpMethod.POST, "/autenticacao").permitAll();
                     req.requestMatchers(HttpMethod.POST, "/usuarios/register").permitAll();
-                    // req.requestMatchers(rotas).permitAll();
+                    req.requestMatchers(SWAGGER_WHITELIS).permitAll();                    // req.requestMatchers(rotas).permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
