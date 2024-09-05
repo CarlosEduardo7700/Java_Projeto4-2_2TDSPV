@@ -58,6 +58,27 @@ public class PostController {
 
     @PostMapping("{id}/comentarios")
     @Transactional
+    @Operation(
+            summary = "Cadastro de Comentário",
+            description = "Cadastro de um Comentário em um Post"
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "201",
+                    description = "Cadastro com Sucesso",
+                    content = @Content(
+                            schema = @Schema(
+                                    implementation = DetalhesPostDto.class
+                            ), mediaType = "application/json")),
+            @ApiResponse(
+                    responseCode = "403",
+                    description = "Não Autorizado ou Token Inválido",
+                    content = { @Content(
+                            schema = @Schema()) }),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Dados inválidos")
+    })
     @Parameters({
             @Parameter(name="id", description = "Id do post que terá um comentário", required = true, in = ParameterIn.PATH),
     })
